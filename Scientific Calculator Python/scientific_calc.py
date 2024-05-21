@@ -1,4 +1,3 @@
-#This code snippet is a class definition for a scientific calculator using the Tkinter library in Python. It provides various mathematical functions and operations such as addition, subtraction, multiplication, division, square root, trigonometric functions, logarithmic functions, and more. The calculator has a graphical user interface with buttons for input and display for the result. It also includes options to switch between standard and scientific modes. The code is well-structured and organized into methods for different functionalities. It can be used as a starting point to build a fully functional scientific calculator application.
 from tkinter import *
 import math
 import tkinter.messagebox
