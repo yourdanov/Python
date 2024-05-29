@@ -30,6 +30,13 @@ It contains different Python source codes for:
 - Automatically starts a countdown from a specified number of seconds when the application is launched.
 - Updates the label every second to show the remaining time until it reaches zero.
 
+<div>
+<img src="https://github.com/yourdanov/Python/blob/main/Countdown%20Python/count1.png" width="500px"</img> 
+</div>
+<div>
+<img src="https://github.com/yourdanov/Python/blob/main/Countdown%20Python/count2.png" width="500px"</img> 
+</div>
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/yourdanov/Python/blob/main/Countdown%20Python/count1.png">
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/yourdanov/Python/blob/main/Countdown%20Python/count2.png">
@@ -38,6 +45,10 @@ It contains different Python source codes for:
 ## 3. Factorial Calculator v 1.00 /Factorial Calculator Python
 
 - Calculate the factorial of a non-negative integer.
+
+<div>
+<img src="https://github.com/yourdanov/Python/blob/main/Factorial%20Calculator/facto.png" width="500px"</img> 
+</div>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/yourdanov/Python/blob/main/Factorial%20Calculator/facto.png">
