@@ -12,6 +12,13 @@ It contains different Python source codes for:
 - The calculator has a graphical user interface with buttons for input and display for the result.
 - It also includes options to switch between standard and scientific modes.
 
+<div>
+<img src="https://github.com/yourdanov/Python/blob/main/Scientific%20Calculator%20Python/py_sci_calc1.png" width="500px"</img> 
+</div>
+<div>
+<img src="https://github.com/yourdanov/Python/blob/main/Scientific%20Calculator%20Python/py_sci_calc2.png" width="500px"</img> 
+</div>
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/yourdanov/Python/blob/main/Scientific%20Calculator%20Python/py_sci_calc1.png">
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/yourdanov/Python/blob/main/Scientific%20Calculator%20Python/py_sci_calc2.png">
