@@ -5,10 +5,10 @@ This is a repository created by Atanas Yourdanov.
 
 ## Table of Contents
 
-- [Scientific Calculator](#1. Scientific Calculator v 1.00 /Scientific Calculator Python)
-- [Countdown Timer](#2. Countdown Timer v 1.00 /Countdown Python)
-- [Factorial Calculator](#3. Factorial Calculator v 1.00 /Factorial Calculator Python)
-- [Slots Machine Game] (#4. Slots Machine Game v1.00 /Slots Machine Game Python)
+- Scientific Calculator
+- Countdown Timer
+- Factorial Calculator
+- Slots Machine Game
 
 ## 1. Scientific Calculator v 1.00 /Scientific Calculator Python
 
