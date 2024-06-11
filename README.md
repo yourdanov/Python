@@ -3,7 +3,12 @@
 
 This is a repository created by Atanas Yourdanov.
 
-It contains different Python source codes for:
+## Table of Contents
+
+- [Scientific Calculator](#1. Scientific Calculator v 1.00 /Scientific Calculator Python)
+- [Countdown Timer](#2. Countdown Timer v 1.00 /Countdown Python)
+- [Factorial Calculator](#3. Factorial Calculator v 1.00 /Factorial Calculator Python)
+- [Slots Machine Game] (#4. Slots Machine Game v1.00 /Slots Machine Game Python)
 
 ## 1. Scientific Calculator v 1.00 /Scientific Calculator Python
 
@@ -54,5 +59,35 @@ It contains different Python source codes for:
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/yourdanov/Python/blob/main/Factorial%20Calculator/facto.png">
 </picture>
 
+## 4. Slots Machine Game v1.00 /Slots Machine Game Python
+
+This Python program implements a slot machine game using tkinter GUI library.
+
+Features
+
+- Start a new game.
+- Set budget and bet amount.
+- Spin the slot machine.
+- Change bet amount.
+- Change symbols and background color.
+
+Features expected in the next version:
+
+- Auto Spin functionality
+
+Usage
+
+- Click the "Spin!" button to play the game.
+- Use the "Change Bet!" button to adjust the bet amount.
+- Access the settings menu to change symbols and background color.
+- Follow on-screen instructions to set budget and bet.
+
+<div>
+<img src="https://github.com/yourdanov/Slots/blob/main/slots.png" width="500px"</img>
+</div>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/yourdanov/Slots/blob/main/slots.png">
+</picture>
 
 # Please report any issues and bugs.
