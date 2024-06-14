@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox, Menu, colorchooser
+from tkinter import messagebox, Menu, colorchooser, simpledialog
 import random
 
 
@@ -29,9 +29,8 @@ class SlotMachine:
         self.bet = 0.0
         self.initial_budget = 0.0
         self.spin_counter = 0
-        # self.auto_spin_counter = 0
-        # self.auto_spin = False
-
+        self.auto_spin_count = 0  # Initialize auto_spin_count here
+        self.auto_spin_active = False
         self.create_menu()
         self.create_widgets()
         self.setup_bindings()
@@ -82,26 +81,30 @@ class SlotMachine:
                                            fg='white', font=("Helvetica", 14, 'bold'))
         self.change_bet_button.grid(row=7, column=1, columnspan=1, pady=10)
 
-        # self.auto_spin_button = tk.Button(self.frame, text="Auto Spin!", command=self.auto_spin_setup, bg='purple',
-        #                                   fg='white', font=("Helvetica", 14, 'bold'))
-        # self.auto_spin_button.grid(row=6, column=2, columnspan=1, pady=20)
-        #
-        # self.cancel_auto_spin_button = tk.Button(self.frame, text="Cancel Auto Spin!", command=self.cancel_auto_spin,
-        #                                          bg='orange', fg='white', font=("Helvetica", 14, 'bold'))
-        # self.cancel_auto_spin_button.grid(row=6, column=3, columnspan=1, pady=20)
-        # self.cancel_auto_spin_button.grid_remove()
+        self.auto_spin_button = tk.Button(self.frame, text="Auto Spin!", command=self.auto_spin_setup, bg='purple',
+                                          fg='white', font=("Helvetica", 14, 'bold'))
+        self.auto_spin_button.grid(row=6, column=2, columnspan=1, pady=20)
+
+        self.cancel_auto_spin_button = tk.Button(self.frame, text="Cancel Auto Spin!", command=self.cancel_auto_spin,
+                                                 bg='orange', fg='white', font=("Helvetica", 14, 'bold'))
+        self.cancel_auto_spin_button.grid(row=6, column=3, columnspan=1, pady=20)
+        self.cancel_auto_spin_button.grid_remove()
 
         self.spin_counter_label = tk.Label(self.frame, text=f"Spin Count: {self.spin_counter}", bg='darkgreen',
                                            fg='white', font=("Helvetica", 14, 'bold'))
         self.spin_counter_label.grid(row=8, column=1, columnspan=1, pady=10)
 
-        # self.auto_spin_counter_label = tk.Label(self.frame, text=f"Auto Spin Count: {self.auto_spin_counter}",
-        #                                         bg='darkgreen', fg='white', font=("Helvetica", 14, 'bold'))
-        # self.auto_spin_counter_label.grid(row=8, column=2, columnspan=1, pady=10)
+        self.auto_spin_counter_label = tk.Label(self.frame, text=f"Auto Spin Count: {self.auto_spin_count}",
+                                                bg='darkgreen', fg='white', font=("Helvetica", 14, 'bold'))
+        self.auto_spin_counter_label.grid(row=8, column=2, columnspan=1, pady=10)
 
         self.budget_label = tk.Label(self.frame, text=f"Budget: {self.budget:.2f}", bg='darkgreen', fg='white',
                                      font=("Helvetica", 14, 'bold'))
         self.budget_label.grid(row=8, column=3, columnspan=1, pady=10)
+
+        self.bet_label = tk.Label(self.frame, text=f"Current Bet: {self.bet:.2f}", bg='darkgreen', fg='white',
+                                  font=("Helvetica", 14, 'bold'))
+        self.bet_label.grid(row=8, column=4, columnspan=1, pady=10)
 
         self.message_label = tk.Label(self.frame, text="", bg='darkgreen', fg='yellow', font=("Helvetica", 14, 'bold'))
         self.message_label.grid(row=9, column=1, columnspan=3, pady=10)
@@ -144,17 +147,32 @@ class SlotMachine:
         self.bet_entry.grid_remove()
         self.set_budget_bet_button.grid_remove()
         self.update_budget_label()
+        self.update_bet_label()
         self.message_label.config(text="")
         self.budget_entry.focus_set()
 
     def ask_for_bet(self):
-        if self.budget > 0:
-            self.change_bet_button.config(state='normal')
-            self.budget_entry.grid_remove()
-            self.bet_entry.grid()
-            self.set_budget_bet_button.grid()
-            self.budget_entry.insert(0, f"{self.budget:.2f}")
-            self.budget_entry.config(state='disabled')
+        self.bet_entry.grid()
+        self.set_budget_bet_button.config(command=self.update_bet)
+        self.set_budget_bet_button.grid()
+        self.bet_entry.delete(0, tk.END)
+        self.bet_entry.insert(0, f"{self.bet:.2f}")
+        self.bet_entry.focus_set()
+
+    def update_bet(self):
+        try:
+            new_bet = float(self.bet_entry.get())
+            if new_bet <= 0 or new_bet > self.budget:
+                raise ValueError
+            self.bet = new_bet
+        except ValueError:
+            self.message_label.config(text="Please enter a valid bet amount.")
+            return
+
+        self.bet_entry.grid_remove()
+        self.set_budget_bet_button.grid_remove()
+        self.message_label.config(text="")
+        self.update_bet_label()
 
     def spin(self):
         if self.budget < self.bet:
@@ -163,15 +181,14 @@ class SlotMachine:
 
         self.spin_button.config(state='disabled')
         self.change_bet_button.config(state='disabled')
-        # self.auto_spin_button.config(state='disabled')
-        # self.cancel_auto_spin_button.config(state='disabled')
+        self.auto_spin_button.config(state='disabled')
+        self.cancel_auto_spin_button.config(state='disabled')
         self.budget -= self.bet
         self.message_label.config(text="")
         self.spin_counter += 1
         self.spin_counter_label.config(text=f"Spin Count: {self.spin_counter}")
 
         self.animate_spin()
-
 
     def animate_spin(self):
         self.spinning = True
@@ -190,14 +207,14 @@ class SlotMachine:
             self.root.after(100)  # Time delay for the spin effect
 
         # Define fixed delays for the first four columns and a random delay for the fifth column
-        delays = [600, 800, 900, 1000, random.randint(1000, 1400)]
+        delays = [200, 300, 400, 500, random.randint(600, 700)]
 
         # Schedule each column's stop time
         for i, delay in enumerate(delays):
             self.root.after(delay, self.update_column, i, columns[i])
 
         # Schedule the win check and re-enable buttons after the last column stops spinning
-        self.root.after(max(delays), self.finish_spin, columns)
+        self.root.after(max(delays) + 100, self.finish_spin, columns)
 
     def update_column(self, col_idx, symbols):
         for j in range(5):
@@ -207,18 +224,18 @@ class SlotMachine:
     def finish_spin(self, columns):
         self.check_win(columns)
         self.update_budget_label()
-        self.spin_button.config(state='normal')
-        self.change_bet_button.config(state='normal')
-        # self.auto_spin_button.config(state='normal')
-        # self.cancel_auto_spin_button.config(state='normal')
         self.spinning = False
 
         if self.budget <= 0:
             self.message_label.config(text="You have run out of budget. Game over!")
-            self.spin_button.config(state='disabled')
-            self.change_bet_button.config(state='disabled')
-            # self.auto_spin_button.config(state='disabled')
-            # self.cancel_auto_spin_button.config(state='disabled')
+            self.disable_all_buttons()
+            return
+
+        if self.auto_spin_active and self.auto_spin_count > 0:
+            self.root.after(500, self.auto_spin)  # 500 ms delay before the next auto spin
+        else:
+            self.enable_all_buttons()
+            self.auto_spin_active = False
 
     def check_win(self, columns):
         win = 0
@@ -313,22 +330,21 @@ class SlotMachine:
     def update_budget_label(self):
         self.budget_label.config(text=f"Budget: {self.budget:.2f}")
 
+    def update_bet_label(self):
+        self.bet_label.config(text=f"Current Bet: {self.bet:.2f}")
+
     def new_game(self):
         self.budget = 0.0
         self.bet = 0.0
         self.spin_counter = 0
-        # self.auto_spin_counter = 0
-        # self.auto_spin = False
         self.spin_counter_label.config(text=f"Spin Count: {self.spin_counter}")
-        # self.auto_spin_counter_label.config(text=f"Auto Spin Count: {self.auto_spin_counter}")
         self.update_budget_label()
+        self.update_bet_label()
         self.budget_entry.grid()
         self.bet_entry.grid()
         self.set_budget_bet_button.grid()
         self.change_bet_button.config(state='normal')
         self.spin_button.config(state='normal')
-        # self.auto_spin_button.config(state='normal')
-        # self.cancel_auto_spin_button.config(state='disabled')
         self.message_label.config(text="")
         self.budget_entry.focus_set()
 
@@ -344,24 +360,73 @@ class SlotMachine:
                 for j in range(5):
                     self.slot_labels[i][j].config(bg=color if j != 2 else 'yellow')
 
-    # def auto_spin_setup(self):
-    #     self.auto_spin = True
-    #     self.cancel_auto_spin_button.grid()
-    #     self.auto_spin_button.grid_remove()
-    #     self.ask_for_spin_count()
-    #
-    # def cancel_auto_spin(self):
-    #     self.auto_spin = False
-    #     self.cancel_auto_spin_button.grid_remove()
-    #     self.auto_spin_button.grid()
-    #
-    # def ask_for_spin_count(self):
-    #     self.auto_spin_counter = int(input("Enter number of auto spins (or -1 for infinite): "))
-    #     if self.auto_spin_counter == -1:
-    #         self.auto_spin = True
-    #     else:
-    #         self.auto_spin = False
-    #     self.spin()
+    def auto_spin_setup(self):
+        self.auto_spin_count = int(self.ask_for_spin_count())
+        if self.auto_spin_count > 0:
+            self.disable_all_buttons()
+            self.auto_spin_counter_label.config(text=f"Auto Spin Count: {self.auto_spin_count}")
+            self.auto_spin()
+
+    def auto_spin_setup(self):
+        self.auto_spin_count = int(self.ask_for_spin_count())
+        if self.auto_spin_count > 0:
+            self.auto_spin_active = True
+            self.auto_spin()
+
+    def cancel_auto_spin(self):
+        self.auto_spin_active = False
+        if not self.spinning:
+            self.enable_all_buttons()
+        self.auto_spin_count = 0
+        self.cancel_auto_spin_button.config(state='disabled')
+
+        if self.budget <= 0:
+            self.message_label.config(text="You have run out of budget. Game over!")
+            self.spin_button.config(state='disabled')
+            self.change_bet_button.config(state='disabled')
+            self.auto_spin_button.config(state='disabled')
+            self.cancel_auto_spin_button.config(state='disabled')
+
+        if self.auto_spin_active and self.auto_spin_count > 0:
+            self.root.after(500, self.auto_spin)  # 500 ms delay before the next auto spin
+        else:
+            self.enable_all_buttons()
+            self.auto_spin_active = False
+
+    def cancel_auto_spin(self):
+        self.auto_spin_count = 0
+        self.enable_all_buttons()
+        self.auto_spin_button.config(state='normal')
+        self.cancel_auto_spin_button.grid_remove()
+
+    def ask_for_spin_count(self):
+        return simpledialog.askinteger("Auto Spin", "Enter number of spins:")
+
+    def disable_all_buttons(self):
+        self.spin_button.config(state='disabled')
+        self.change_bet_button.config(state='disabled')
+        self.auto_spin_button.config(state='disabled')
+        self.cancel_auto_spin_button.grid()
+        self.cancel_auto_spin_button.config(state='normal')
+
+    def enable_all_buttons(self):
+        self.spin_button.config(state='normal')
+        self.change_bet_button.config(state='normal')
+        self.auto_spin_button.config(state='normal')
+        self.cancel_auto_spin_button.grid_remove()
+
+    def auto_spin(self):
+        if self.auto_spin_active and self.auto_spin_count > 0 and self.budget >= self.bet:
+            self.disable_all_buttons()
+            self.budget -= self.bet
+            self.message_label.config(text="")
+            self.spin_counter += 1
+            self.spin_counter_label.config(text=f"Spin Count: {self.spin_counter}")
+            self.animate_spin()
+            self.auto_spin_count -= 1
+            self.auto_spin_counter_label.config(text=f"Auto Spin Count: {self.auto_spin_count}")
+        else:
+            self.cancel_auto_spin()
 
 
 if __name__ == "__main__":

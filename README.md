@@ -59,7 +59,7 @@ This is a repository created by Atanas Yourdanov.
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/yourdanov/Python/blob/main/Factorial%20Calculator/facto.png">
 </picture>
 
-## 4. Slots Machine Game v1.00 /Slots Machine Game Python
+## 4. Slots Machine Game v1.02 /Slots Machine Game Python
 
 This Python program implements a slot machine game using tkinter GUI library.
 
@@ -70,9 +70,6 @@ Features
 - Spin the slot machine.
 - Change bet amount.
 - Change symbols and background color.
-
-Features expected in the next version:
-
 - Auto Spin functionality
 
 Usage
@@ -83,11 +80,11 @@ Usage
 - Follow on-screen instructions to set budget and bet.
 
 <div>
-<img src="https://github.com/yourdanov/Slots/blob/main/slots.png" width="500px"</img>
+<img src="https://github.com/yourdanov/Slots/blob/main/slots_v102_3.png" width="500px"</img>
 </div>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/yourdanov/Slots/blob/main/slots.png">
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/yourdanov/Slots/blob/main/slots_v102_3.png">
 </picture>
 
 # Please report any issues and bugs.
