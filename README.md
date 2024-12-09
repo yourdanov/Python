@@ -15,7 +15,7 @@ This is a repository created by Atanas Yourdanov - a.yourdanov@live.com
 
 ---
 
-## 1. Scientific Calculator /Scientific Calculator Python
+## 1. Scientific Calculator
 
 - This code snippet is a class definition for a scientific calculator using the Tkinter library in Python.
 - It provides various mathematical functions and operations such as addition, subtraction, multiplication, division, square root, trigonometric functions, logarithmic functions, and more.
@@ -34,7 +34,7 @@ This is a repository created by Atanas Yourdanov - a.yourdanov@live.com
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/yourdanov/Python/blob/main/Scientific%20Calculator%20Python/py_sci_calc2.png">
 </picture>
 
-## 2. Countdown Timer /Countdown Python
+## 2. Countdown Timer
 
 - Initializes a GUI window with a label that displays the countdown.
 - Automatically starts a countdown from a specified number of seconds when the application is launched.
@@ -52,7 +52,7 @@ This is a repository created by Atanas Yourdanov - a.yourdanov@live.com
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/yourdanov/Python/blob/main/Countdown%20Python/count2.png">
 </picture>
 
-## 3. Factorial Calculator /Factorial Calculator Python
+## 3. Factorial Calculator
 
 - Calculate the factorial of a non-negative integer.
 
@@ -64,7 +64,7 @@ This is a repository created by Atanas Yourdanov - a.yourdanov@live.com
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/yourdanov/Python/blob/main/Factorial%20Calculator/facto.png">
 </picture>
 
-## 4. Interactive Quiz /Interactive Quiz Python
+## 4. Interactive Quiz
 
 The application is an interactive programming quiz where users answer 10 randomly selected questions from a total pool of X questions stored within the application. Users receive immediate feedback on whether their answers are correct or incorrect. After completing the quiz, users can view their overall score and choose to start a new quiz or exit the application.
 
@@ -84,7 +84,7 @@ The application is an interactive programming quiz where users answer 10 randoml
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/yourdanov/Python/blob/main/Interactive%20Quiz/quiz2.png">
 </picture>
 
-## 5. Network Scanner /Network Scanner Python
+## 5. Network Scanner
 
 The Network Scanner is a Python-based tool designed to scan local networks, monitor suspicious activities, and provide real-time alerts. It includes a graphical user interface (GUI) built with Tkinter, enabling users to easily interact with the application and view results.
 
@@ -134,7 +134,7 @@ Features
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/yourdanov/Python/blob/main/Network%20Scanner/scanner2.png">
 </picture>
 
-## 6. Icon Files Creator /Icon Files Creator Python
+## 6. Icon Files Creator
 
 This Python script utilizes the Pillow library (PIL) to create a multi-size icon file (.ico) from an existing image. The script is designed to handle the following operations:
 
@@ -151,7 +151,7 @@ This Python script utilizes the Pillow library (PIL) to create a multi-size icon
 
 - The resulting .ico file can be used for purposes like application icons or website favicons. The inclusion of multiple sizes ensures compatibility across different display resolutions and contexts.
 
-## 5. Stocks Forecast /Stocks Forecast Python
+## 5. Stocks Forecast
 
 For more information visit - https://github.com/yourdanov/Stocks
 
