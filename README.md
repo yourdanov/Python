@@ -59,25 +59,9 @@ This is a repository created by Atanas Yourdanov.
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/yourdanov/Python/blob/main/Factorial%20Calculator/facto.png">
 </picture>
 
-## 4. Slots Machine Game v1.02 /Slots Machine Game Python
+## 4. Interactive Quiz /Interactive Quiz Python
 
-This Python program implements a slot machine game using tkinter GUI library.
-
-Features
-
-- Start a new game.
-- Set budget and bet amount.
-- Spin the slot machine.
-- Change bet amount.
-- Change symbols and background color.
-- Auto Spin functionality
-
-Usage
-
-- Click the "Spin!" button to play the game.
-- Use the "Change Bet!" button to adjust the bet amount.
-- Access the settings menu to change symbols and background color.
-- Follow on-screen instructions to set budget and bet.
+The application is an interactive programming quiz where users answer 10 randomly selected questions from a total pool of X questions stored within the application. Users receive immediate feedback on whether their answers are correct or incorrect. After completing the quiz, users can view their overall score and choose to start a new quiz or exit the application.
 
 <div>
 <img src="https://github.com/yourdanov/Slots/blob/main/slots_v102_3.png" width="500px"</img>
@@ -86,5 +70,7 @@ Usage
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://github.com/yourdanov/Slots/blob/main/slots_v102_3.png">
 </picture>
+
+
 
 # Please report any issues and bugs.
